@@ -8,12 +8,12 @@
       <p>
         Your Idea:
       </p>
-      <input type="text" name="idea_title"/><br/>
-      <textarea name="idea_description"></textarea><br/>
+      <input type="text" name="idea[title]"/><br/>
+      <textarea name="idea[description]"></textarea><br/>
       <input type="submit"/>
     </form>
     <ul>
-      <% ideas.each_with_index do |idea, id|  %>
+        <% ideas.each_with_index do |idea, id|  %>
       <li>
         <%= idea.title %>(<%= id %>)<br/>
         <%= idea.description  %>
