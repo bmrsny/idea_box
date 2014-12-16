@@ -14,16 +14,15 @@ class Idea
     end
   end
 
-  def self.raw_ideas
-    database.transaction do |db|
-      db['ideas'] || []
+  def self.delete(position)
+    database.transaction do
+      database['ideas'].delete_at(position)
     end
   end
 
-  def save
+  def self.raw_ideas
     database.transaction do |db|
-      db['ideas'] ||= []
-      db['ideas'] << {title: title, description: description}
+      db['ideas'] || []
     end
   end
 
@@ -33,5 +32,12 @@ class Idea
 
   def database
     Idea.database
+  end
+
+  def save
+    database.transaction do |db|
+      db['ideas'] ||= []
+      db['ideas'] << {title: title, description: description}
+    end
   end
 end

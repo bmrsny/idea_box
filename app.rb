@@ -3,9 +3,9 @@ require "./idea"
 class IdeaBoxApp < Sinatra::Base
   set :method_override, true
 
-  configure :development do
-    register Sinatra::Reloader
-  end
+  # configure :development do
+  #   register Sinatra::Reloader
+  # end
 
   not_found do
     erb :error
@@ -25,6 +25,7 @@ class IdeaBoxApp < Sinatra::Base
   end
 
   delete '/:id' do |id|
-    "DELETING an idea!"
+    Idea.delete(id.to_i)
+    redirect '/'
   end
 end
