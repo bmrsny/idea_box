@@ -19,6 +19,6 @@ class IdeaBoxApp < Sinatra::Base
     # #2 store it
     idea.save
     # #send us back to index to see all
-    "Creating an Idea"
+    redirect '/'
   end
 end
