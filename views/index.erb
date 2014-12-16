@@ -1,6 +1,6 @@
 <form action='/' method='POST'>
   <p>
-    Your Idea:
+    Your IDEA:
   </p>
   <input type="text" name="idea[title]"/><br/>
   <textarea name="idea[description]"></textarea><br/>
@@ -11,6 +11,9 @@
   <li>
     <%= idea.title %>(<%= id %>)<br/>
     <%= idea.description  %>
+    <form action="/<%= id %>/like" method="POST" style="display: inline">
+      <input type="submit" value="+"/>
+    </form>
     <a href='/<%= id %>/edit'>Edit</a>
     <form action="/<%= id %>" method="POST">
       <input type="hidden" name="_method" value="DELETE">
