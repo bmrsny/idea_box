@@ -20,6 +20,17 @@ class Idea
     end
   end
 
+  def self.find(id)
+    raw_idea = find_raw_idea(id)
+    Idea.new(raw_idea[:title], raw_idea[:description])
+  end
+
+  def self.find_raw_idea(id)
+    database.transaction do
+      database['ideas'].at(id)
+    end
+  end
+
   def self.raw_ideas
     database.transaction do |db|
       db['ideas'] || []
@@ -38,6 +49,12 @@ class Idea
     database.transaction do |db|
       db['ideas'] ||= []
       db['ideas'] << {title: title, description: description}
+    end
+  end
+
+  def self.update(id, data)
+    database.transaction do
+      database['ideas'][id] = data
     end
   end
 end
