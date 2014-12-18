@@ -1,12 +1,14 @@
 ---
 ideas:
-- title: Learn to code
-  description: A helpful tutorial to teach you how to code
-  rank: 1
-  time: 2014-12-17 21:08:58.263736000 -07:00
+- title: why
+  description: why time why won't you work
+  tag: TIME
+  time: 2014-12-18 00:05:05.126392000 -07:00
+- title: CODE CHALLENGE
+  description: This is a great way to learn basic coding skills
   tag: CODERS
-- title: Ideas
-  description: without tags are cook too
-  rank: 6
-  time: 2014-12-17 21:10:00.208555000 -07:00
-  tag: ''
+  time: 2014-12-18 00:05:53.563057000 -07:00
+- title: FACE IT
+  description: HHHHHHHHHWWWWWWWWRRRTKJEKLJDLKDKLJDKLSSSSSSS
+  tag: BAH HUMBUG
+  time: 2014-12-18 00:07:57.991736000 -07:00

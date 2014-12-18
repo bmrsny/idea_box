@@ -1,0 +1,22 @@
+body {
+  background-color: #000000;
+  color: #fff;
+  background-image: url("images/texture.jpg");
+
+}
+
+.table-striped>tbody>tr:nth-child(odd) {
+  background-color: #271e39;
+}
+
+.btn-click {
+  color: #fff;
+  background-color: #869AA0;
+  border-color: #46b8da;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #4D0404;
+  border-color: #d43f3a;
+}
