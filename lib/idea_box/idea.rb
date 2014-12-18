@@ -1,10 +1,15 @@
+require 'date'
 class Idea
-  attr_reader :title, :description
+  include Comparable
+  attr_reader :title, :description, :rank, :id, :time, :tag
 
-  def initialize(attributes) #takes in a hash
+  def initialize(attributes)
      @title       = attributes["title"]
      @description = attributes["description"]
      @rank = attributes["rank"] || 0
+     @id   = attributes["id"]
+     @time = attributes["time"]
+     @tag = attributes["tag"] 
   end
 
   def database
@@ -19,7 +24,17 @@ class Idea
     {
       "title" => title,
       "description" => description,
-      "rank" => rank
+      "rank" => rank,
+      "time" => time,
+      "tag"  => tag
     }
+  end
+
+  def like!
+    @rank += 1
+  end
+
+  def <=>(other)
+    other.rank <=> rank
   end
 end

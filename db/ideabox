@@ -1,6 +1,12 @@
 ---
 ideas:
-- title: hi dude
-  description: "asjdflkasjdklf\r\n"
-- title: updated this shiznit
-  description: "cool idea dude!\r\n"
+- title: Learn to code
+  description: A helpful tutorial to teach you how to code
+  rank: 1
+  time: 2014-12-17 21:08:58.263736000 -07:00
+  tag: CODERS
+- title: Ideas
+  description: without tags are cook too
+  rank: 6
+  time: 2014-12-17 21:10:00.208555000 -07:00
+  tag: ''

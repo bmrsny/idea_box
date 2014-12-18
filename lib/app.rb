@@ -1,5 +1,6 @@
 # require "./idea"
 # require "./idea_store"
+require 'time'
 require 'idea_box'
 class IdeaBoxApp < Sinatra::Base
   set :method_override, true
@@ -10,12 +11,16 @@ class IdeaBoxApp < Sinatra::Base
   end
 
   get '/' do
-    erb :index, locals: {ideas: IdeaStore.all, idea: Idea.new(params)} #returns Idea obj array
+    erb :index, locals: {ideas: IdeaStore.all.sort, idea: Idea.new(params)}
   end
 
   post '/' do
-    IdeaStore.create(params[:idea])
+    IdeaStore.create(params[:idea], Time.now)
     redirect '/'
+  end
+
+  get '/filter/:tag' do
+    erb :index, locals: {ideas: IdeaStore.filter(params[:tag]), idea: Idea.new(params)}
   end
 
   delete '/:id' do |id|
@@ -25,11 +30,18 @@ class IdeaBoxApp < Sinatra::Base
 
   get '/:id/edit' do |id|
     idea = IdeaStore.find(id.to_i)
-    erb :edit, locals: {id: id, idea: idea}
+    erb :edit, locals: {idea: idea}
   end
 
   put '/:id' do |id|
     IdeaStore.update(id.to_i, params[:idea])
+    redirect '/'
+  end
+
+  post '/:id/like' do |id|
+    idea = IdeaStore.find(id.to_i)
+    idea.like!
+    IdeaStore.update(id.to_i, idea.to_h)
     redirect '/'
   end
 end

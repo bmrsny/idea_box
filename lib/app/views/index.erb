@@ -1,21 +1,56 @@
 <form action='/' method='POST'>
   <p>
-    Your Idea:
+    Your Amazing Ideas:
   </p>
-  <input type="text" name="idea[title]"/><br/>
-  <textarea name="idea[description]"></textarea><br/>
+  <input type="text" name="idea[title]" placeholder="Title"><br/>
+  <textarea name="idea[description]" placeholder="Description"></textarea><br/>
+  <input type="text" name="idea[tag]" placeholder="Tag"><br/>
   <input type="submit"/>
 </form>
-<ul>
-  <% ideas.each_with_index do |idea, id|  %>
-  <li>
-    <%= idea.title %>(<%= id %>)<br/>
-    <%= idea.description  %>
-    <a href='/<%= id %>/edit'>Edit</a>
-    <form action="/<%= id %>" method="POST">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="delete">
-    </form>
-  </li>
-  <% end %>
-</ul>
+<h3>Existing Ideas</h3>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Idea</th>
+          <th>Tag</th>
+          <th>Created</th>
+          <th>Like This Shit</th>
+          <th>Fix This Shit</th>
+          <th>Flush This Shit</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+      <% ideas.each do |idea|  %>
+        <form action="/<%= idea.id %>/like" method="POST" style="display: inline">
+          <input type="submit" value="+"/>
+        </form>
+        <%= idea.title %><br/>
+        <%= idea.description  %><br/>
+        Created AT: <%= idea.time.strftime("%m/%d/%y") %><br/>
+        Tag:<%= idea.tag %><br/>
+        <a href='/<%= idea.id %>/edit'>Edit</a>
+        <form action="/<%= idea.id %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="delete">
+        </form>
+      <% end %>
+    </table>
+  </div>
+</div>
+<h3>Tagged Idea</h3>
+  <ul>
+    <% ideas.each do |idea| %>
+      <% if idea.tag != '' %>
+        <li>
+          <%= idea.title %><br/>
+          Created AT: <%= Time.new("#{idea.time}") %>
+          Tag: <%= idea.tag %>
+        </li>
+        <% end %>
+      <%end  %>
+  </ul>
