@@ -6,6 +6,9 @@ class IdeaBoxApp < Sinatra::Base
   set :method_override, true
   set :root, 'lib/app'
 
+  # register Sinatra::Partial
+  # set: partial_template_engine, :erb
+
   not_found do
     erb :error
   end
@@ -44,4 +47,19 @@ class IdeaBoxApp < Sinatra::Base
     IdeaStore.update(id.to_i, idea.to_h)
     redirect '/'
   end
+
+  # helpers do
+  #   def shout(words)
+  #     words.upcase
+  #   end
+  # end
+
+  # get '/playground' do
+  #   @things = [
+  #     {name: 'Thumb', desc: "Face"},
+  #     {name: "Smelly", desc: "What was that???!"}
+  #   ]
+  #   @adjective = ["nice", "decent", "extremely stressed", "cruddy"].shuffle.first
+  #   erb :playground
+  # end
 end

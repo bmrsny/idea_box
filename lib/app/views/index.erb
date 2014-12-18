@@ -1,7 +1,9 @@
 <form action='/' method='POST'>
+
   <h2>
-    Your Amazing Ideas:
+    It's Idea Time:
   </h2>
+  <h3><%= "Add some ideas" if ideas.empty? %></h3>
   <div class="form-group">
     <input class="form-control" type="text" name="idea[title]" placeholder="Title">
   </div>
@@ -19,10 +21,11 @@
     <table class="table table-striped">
       <thead>
         <tr>
+
           <th>Title</th>
           <th>Idea</th>
-          <th>Tag</th>
           <th>Created</th>
+          <th>Tag</th>
           <th>LIKE</th>
           <th>Edit</th>
           <th>Nope</th>
@@ -33,8 +36,8 @@
         <tr>
           <td><%= idea.title %></td>
           <td><%= idea.description  %></td>
-          <td><%= idea.tag %></td>
           <td><%= idea.time %></td>
+          <td><a class="btn btn-lg btn-click" href='/filter/<%= idea.tag %>'><%= idea.tag %></a></td>
           <td>
             <form action="/<%= idea.id %>/like" method="POST" style="display: inline">
             <input class="btn btn-lg btn-click" type="submit" value="I LOVE THIS"/>
@@ -53,7 +56,7 @@
     </table>
   </div>
 </div>
-<h3>Tagged Idea</h3>
+<!-- <h3>Tagged Idea</h3>
   <ul>
     <% ideas.each do |idea| %>
       <% if idea.tag != '' %>
@@ -64,4 +67,4 @@
         </li>
         <% end %>
       <%end  %>
-  </ul>
+  </ul> -->

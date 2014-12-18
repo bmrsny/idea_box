@@ -8,8 +8,8 @@ class IdeaStore
   end
 
   def self.filter(tag)
-    raw_ideas.select do |entry|
-      Idea.new(entry).tag == tag 
+    all.select do |entry|
+      entry.tag == tag
     end
   end
 
